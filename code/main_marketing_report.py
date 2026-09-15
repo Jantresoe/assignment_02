@@ -33,10 +33,9 @@ from sales_pipeline.extract import get_raw_sales_data
 from sales_pipeline.transform import (
     clean_sales_data,
     summarize_by_item,
-    find_top_entry,
-)
-from sales_pipeline.display import print_item_table
+    find_top_entry,)
 
+from sales_pipeline.display import print_item_table
 if len(sys.argv) > 1 and sys.argv[1].strip() != "":
     SEED = int(sys.argv[1])
 else:
