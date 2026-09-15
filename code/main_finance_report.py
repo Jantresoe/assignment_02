@@ -19,6 +19,10 @@ Before running:  pip install -r requirements.txt
 
 import sys
 
+# Ensure the project root and the script directory are both importable when this
+# script is launched either from the project root or directly from its folder.
+
+
 from sales_pipeline import (
     get_raw_sales_data,
     clean_sales_data,
