@@ -19,6 +19,13 @@ Before running:  pip install -r requirements.txt
 
 import sys
 
+from sales_pipeline import (
+    get_raw_sales_data,
+    clean_sales_data,
+    calculate_total_revenue,
+    print_sales_table,
+)
+
 # --- Reading the dataset seed ----------------------------------------------------
 #
 # This block is GIVEN to you, in this report only. It is plumbing, not the lesson —
@@ -30,20 +37,6 @@ import sys
 # *string*, so it needs int(). A missing argument — or a blank one, which is what
 # VS Code sends when you clear the seed prompt — means "use the sample data".
 # See README Reference #7.
-
-seed = None
-if len(sys.argv) > 1 and sys.argv[1].strip() != "":
-    seed = int(sys.argv[1])
-
-
-import sys
-
-from sales_pipeline import (
-    get_raw_sales_data,
-    clean_sales_data,
-    calculate_total_revenue,
-    print_sales_table,
-)
 
 seed = None
 if len(sys.argv) > 1 and sys.argv[1].strip() != "":
