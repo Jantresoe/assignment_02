@@ -28,30 +28,33 @@ import sys
 #
 # `main_finance_report.py` is your worked example for anything structural.
 
-# TODO: import what this report needs from the package.
+
+from sales_pipeline.extract import get_raw_sales_data
+from sales_pipeline.transform import (
+    clean_sales_data,
+    summarize_by_item,
+    find_top_entry,
+)
+from sales_pipeline.display import print_item_table
+
+if len(sys.argv) > 1 and sys.argv[1].strip() != "":
+    SEED = int(sys.argv[1])
+else:
+    SEED = None
+
+print("=== MARKETING: Revenue by Item ===")
+print()
 
 
-# TODO: handle the optional dataset seed. This is the same three lines the Finance
-#       report has — read them there, then write them here yourself.
+raw_data = get_raw_sales_data(SEED)
+cleaned_data = clean_sales_data(raw_data)
+summary = summarize_by_item(cleaned_data)
 
+# Find the top seller by revenue and units sold
+top_revenue = find_top_entry(summary, "revenue")
+top_units = find_top_entry(summary, "units_sold")
 
-# TODO: print the header, exactly:   === MARKETING: Revenue by Item ===
-#       then a blank line.
-
-
-# 1. Extract — the same source Finance uses, called the same way.
-# TODO
-
-
-# 2. Transform — clean the rows, roll them up to one entry per item, then find the
-#    best entry twice: once by "revenue", once by "units_sold". They are usually
-#    different products, which is the whole reason Marketing asked.
-# TODO
-
-
-# 3. Load — the item table, a blank line, then two headline lines. Match this
-#    layout exactly, including the padding that lines the two values up:
-#
-#        Top seller by revenue: Gizmo Pro ($1,200.00)
-#        Top seller by units:   Widget C (15 units)
-# TODO
+print_item_table(summary)
+print()
+print(f"Top seller by revenue: {top_revenue['item']} (${top_revenue['revenue']:,.2f})")
+print(f"Top seller by units:   {top_units['item']} ({top_units['units_sold']} units)")
