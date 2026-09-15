@@ -94,8 +94,7 @@ __all__ = [
 # a broken promise; a name imported above but missing here is a feature nobody can
 # find.
 __all__ = [
-    # TODO: list every name you imported above, in the same order.
-    "clean_sales_data",
+     "clean_sales_data",
     "calculate_total_revenue",
     "get_raw_sales_data",
     "print_sales_table",
