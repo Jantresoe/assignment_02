@@ -67,19 +67,19 @@ HOW TO BUILD IT
 # One group per module. The leading dot on each is what makes these *relative*
 # imports — "from the display module that sits beside this file", not "from some
 # package called display installed on this machine".
-
-# TODO: 
-from .transform import clean_sales_data, calculate_total_revenue
 from .extract import get_raw_sales_data
-from .display import print_sales_table
-
-__all__ = [
-    "clean_sales_data",
-    "calculate_total_revenue",
-    "get_raw_sales_data",
-    "print_sales_table",
-]
-
+from .transform import (
+    clean_sales_data,
+    calculate_total_revenue,
+    summarize_by_item,
+    summarize_by_day,
+    find_top_entry,
+)
+from .display import (
+    print_sales_table,
+    print_item_table,
+    print_day_table
+)
 
 # `__all__` is a list of strings naming the public API. It does two jobs.
 #
@@ -94,8 +94,13 @@ __all__ = [
 # a broken promise; a name imported above but missing here is a feature nobody can
 # find.
 __all__ = [
-     "clean_sales_data",
+    "clean_sales_data",
     "calculate_total_revenue",
     "get_raw_sales_data",
+    "summarize_by_item",
+    "summarize_by_day",
+    "find_top_entry",
     "print_sales_table",
+    "print_item_table",
+    "print_day_table",
 ]
