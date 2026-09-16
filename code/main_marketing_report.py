@@ -34,8 +34,8 @@ from sales_pipeline.transform import (
     clean_sales_data,
     summarize_by_item,
     find_top_entry,)
-
 from sales_pipeline.display import print_item_table
+
 if len(sys.argv) > 1 and sys.argv[1].strip() != "":
     SEED = int(sys.argv[1])
 else:
@@ -44,16 +44,15 @@ else:
 print("=== MARKETING: Revenue by Item ===")
 print()
 
-
 raw_data = get_raw_sales_data(SEED)
 cleaned_data = clean_sales_data(raw_data)
 summary = summarize_by_item(cleaned_data)
 
-# Find the top seller by revenue and units sold
 top_revenue = find_top_entry(summary, "revenue")
 top_units = find_top_entry(summary, "units_sold")
 
 print_item_table(summary)
 print()
+
 print(f"Top seller by revenue: {top_revenue['item']} (${top_revenue['revenue']:,.2f})")
 print(f"Top seller by units:   {top_units['item']} ({top_units['units_sold']} units)")
